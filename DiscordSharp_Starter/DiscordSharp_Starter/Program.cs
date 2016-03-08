@@ -57,5 +57,24 @@ namespace DiscordSharp_Starter
 
             Console.ReadKey(); // If the user presses a key, the bot will shut down.
         }
+
+        public int number(string name, int min, int max)
+        {
+            // Bonus code: returns number based of bytes of string.
+            // If something goes wrong, (eg: too long int) it return the min value.
+            try
+            {
+                byte[] namebt = Encoding.UTF8.GetBytes(name);
+                string namebtstring = namebt.ToString();
+                int namebtint = Int32.Parse(namebtstring);
+                Random rnd = new Random(namebtint);
+                int returnint = rnd.Next(min, max);
+                return returnint;
+            }
+            catch (Exception)
+            {
+                return min;
+            }
+        }
     }
 }
