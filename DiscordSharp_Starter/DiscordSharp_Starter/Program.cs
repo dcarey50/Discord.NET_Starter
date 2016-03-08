@@ -35,6 +35,13 @@ namespace DiscordSharp_Starter
                     // Because this is a private message, the bot should send a private message back
                     // A private message does NOT have a channel
                 }
+                if (e.message.StartsWith("join "))
+                {
+                    string joinID = e.message.Substring(24, 16);
+                    client.AcceptInvite(joinID);
+                    e.author.SendMessage("Joined your discord server!");
+                    Console.WriteLine("Got join request from " + joinID);
+                }
             };
 
 
