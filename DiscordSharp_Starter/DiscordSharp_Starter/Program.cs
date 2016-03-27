@@ -39,7 +39,7 @@ namespace DiscordSharp_Starter
                 }
                 if (e.message.StartsWith("join "))
                 {
-                    string inviteID = e.message.Substring(e.message.LastIndexOf('/') + 1, e.message.Length - (e.message.LastIndexOf('/') + 1));
+                    string inviteID = e.message.Substring(e.message.LastIndexOf('/') + 1);
                     // Thanks to LuigiFan (Developer of DiscordSharp) for this line of code!
                     client.AcceptInvite(inviteID);
                     e.author.SendMessage("Joined your discord server!");
