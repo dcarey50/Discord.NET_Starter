@@ -1,4 +1,6 @@
-﻿using DiscordSharp;
+﻿//  If you have any questions or just want to talk, join my server!
+//  https://discord.gg/0oZpaYcAjfvkDuE4
+using DiscordSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,35 +16,36 @@ namespace DiscordSharp_Starter
         {
             // First of all, a DiscordClient will be created, and the email and password will be defined.
             DiscordClient client = new DiscordClient();
-            client.ClientPrivateInformation.email = "Your Email";
-            client.ClientPrivateInformation.password = "Your password";
+            client.ClientPrivateInformation.Email = "your@email.com";
+            client.ClientPrivateInformation.Password = "yourpassword";
 
             // Then, we are going to set up our events before connecting to discord, to make sure nothing goes wrong.
 
             client.Connected += (sender, e) => // Client is connected to Discord
             {
-                Console.WriteLine("Connected! User: " + e.user.Username);
+                Console.WriteLine("Connected! User: " + e.User.Username);
                 // If the bot is connected, this message will show.
                 // Changes to client, like playing game should be called when the client is connected,
                 // just to make sure nothing goes wrong.
-                client.UpdateCurrentGame("Bot online!\nPress any key to close this window."); // This will display at "Playing: "
+                client.UpdateCurrentGame("Bot online!"); // This will display at "Playing: "
+                //Whoops! i messed up here. (original: Bot online!\nPress any key to close this window.)
             };
 
 
             client.PrivateMessageReceived += (sender, e) => // Private message has been received
             {
-                if (e.message == "help")
+                if (e.Message == "help")
                 {
-                    e.author.SendMessage("This is a private message!");
+                    e.Author.SendMessage("This is a private message!");
                     // Because this is a private message, the bot should send a private message back
                     // A private message does NOT have a channel
                 }
-                if (e.message.StartsWith("join "))
+                if (e.Message.StartsWith("join "))
                 {
-                    string inviteID = e.message.Substring(e.message.LastIndexOf('/') + 1);
+                    string inviteID = e.Message.Substring(e.Message.LastIndexOf('/') + 1);
                     // Thanks to LuigiFan (Developer of DiscordSharp) for this line of code!
                     client.AcceptInvite(inviteID);
-                    e.author.SendMessage("Joined your discord server!");
+                    e.Author.SendMessage("Joined your discord server!");
                     Console.WriteLine("Got join request from " + inviteID);
                 }
             };
@@ -50,7 +53,7 @@ namespace DiscordSharp_Starter
 
             client.MessageReceived += (sender, e) => // Channel message has been received
             {
-                if (e.message_text == "help")
+                if (e.MessageText == "help")
                 {
                     e.Channel.SendMessage("This is a public message!");
                     // Because this is a public message, 
@@ -58,6 +61,29 @@ namespace DiscordSharp_Starter
                 }
             };
 
+            //  Below: some things that might be nice?
+
+            //  This sends a message to every new channel on the server
+            client.ChannelCreated += (sender, e) =>
+                {
+                    e.ChannelCreated.SendMessage("Nice! a new channel has been created!");
+                };
+
+            //  When a user joins the server, send a message to them.
+            client.UserAddedToServer += (sender, e) =>
+                {
+                    e.AddedMember.SendMessage("Welcome to my server! rules:");
+                    e.AddedMember.SendMessage("1. be nice!");
+                    e.AddedMember.SendMessage("- Your name!");
+                };
+
+            //  Don't want messages to be removed? this piece of code will
+            //  Keep messages for you. Remove if unused :)
+            client.MessageDeleted += (sender, e) =>
+                {
+                    e.Channel.SendMessage("Removing messages has been disabled on this server!");
+                    e.Channel.SendMessage("<@" + e.DeletedMessage.Author.ID + "> sent: " +e.DeletedMessage.Content.ToString());
+                };
 
             // Now, try to connect to Discord.
             try{ 
