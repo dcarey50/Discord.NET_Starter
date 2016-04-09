@@ -1,16 +1,15 @@
 # DiscordSharp_Starter
-Just a little project to get you starting
+### Introduction
+So YOU want to make a discord bot of your own? Look no further! This is exactly what you need! DiscordSharp_Starter is a starter project to get you started at making your very own Discord bot using DiscordSharp! I myself am currently using discordsharp-v0.6.0.67-dev for this project, but you can actually use any version you'd like! (you might have to change some stuff due to library changes.) 
 
-I recommend you using discordsharp-v0.6.0.67-dev.
+### DiscordSharp
+I hear you asking, what exactly is DiscordSharp? DiscordSharp is an AMAZING discord bot library made by LuigiFan. You can download it [here](https://github.com/Luigifan/DiscordSharp). It's fairly easy to use and a good way to get you into bot development!
 
-This project uses DiscordSharp by LuigiFan, get it [here](https://github.com/Luigifan/DiscordSharp)
+### My Discord server
+And on top of all of that, If you need any help i would love to help you out! just join me at my personal [discord server!](https://discord.gg/0oZpaYcAjfvkDuE4) and ask anything you'd like! But please, DON'T add any bots without my permission. it's kinda rude :)
 
-If you want any help, or if you just want to contact me, join my [discord server!](https://discord.gg/0oZpaYcAjfvkDuE4) :)
-
-## Functions
-[x] = completed
-[ ] = not completed
-
+### Functions
+And i hear you asking, what does this starter bot do? Well, I already predicted you wouyd ask that! so i made a nice list of functions :)
 
 - [x] Check if a channel message has been received, and respond to that
 - [x] Check if a private message has been received, and respond to that
