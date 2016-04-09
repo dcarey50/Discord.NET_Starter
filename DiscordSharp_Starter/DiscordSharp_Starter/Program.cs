@@ -109,25 +109,5 @@ namespace DiscordSharp_Starter
             Console.ReadKey(); // If the user presses a key, the bot will shut down.
             Environment.Exit(0); // Make sure all threads are closed.
         }
-
-        public int stringnumber(string name, int min, int max)
-        {
-            // Bonus code: returns number based of bytes of string.
-            // If something goes wrong, (eg: too long int) it return the min value.
-            // This is fun for commands to "rate" a user or anything else, and make sure the same string returns the same number
-            try
-            {
-                byte[] namebt = Encoding.UTF8.GetBytes(name);
-                string namebtstring = namebt.ToString();
-                int namebtint = Int32.Parse(namebtstring);
-                Random rnd = new Random(namebtint);
-                int returnint = rnd.Next(min, max);
-                return returnint;
-            }
-            catch (Exception)
-            {
-                return min;
-            }
-        }
     }
 }
