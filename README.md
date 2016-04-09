@@ -11,4 +11,6 @@ If you want any help, or if you just want to contact me, join my [discord server
 - [x] Check if a channel message has been received, and respond to that
 - [x] Check if a private message has been received, and respond to that
 - [x] Join a channel after receiving a "join *inviteurl*" private message
-- [x] [BONUS!] Generate a number based on a string, so everytime the same number will be returned for the same string.
+- [x] Send a message once a new channel has been created
+- [x] Welcome a user to your server (in private chat)
+- [x] Block message deleting
