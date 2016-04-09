@@ -7,7 +7,11 @@ This project uses DiscordSharp by LuigiFan, get it [here](https://github.com/Lui
 
 If you want any help, or if you just want to contact me, join my [discord server!](https://discord.gg/0oZpaYcAjfvkDuE4) :)
 
-## Things it has to do:
+## Functions
+
+- [x] = complete
+- [ ] = incomplete
+
 - [x] Check if a channel message has been received, and respond to that
 - [x] Check if a private message has been received, and respond to that
 - [x] Join a channel after receiving a "join *inviteurl*" private message
