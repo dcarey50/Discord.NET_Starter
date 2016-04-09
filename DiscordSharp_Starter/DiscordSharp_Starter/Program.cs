@@ -15,12 +15,14 @@ namespace DiscordSharp_Starter
         static void Main(string[] args)
         {
             // First of all, a DiscordClient will be created, and the email and password will be defined.
+            Console.WriteLine("Defining variables");
             DiscordClient client = new DiscordClient();
-            client.ClientPrivateInformation.Email = "your@email.com";
-            client.ClientPrivateInformation.Password = "yourpassword";
+            client.ClientPrivateInformation.Email = "Your mail";
+            client.ClientPrivateInformation.Password = "Your pass";
 
             // Then, we are going to set up our events before connecting to discord, to make sure nothing goes wrong.
 
+            Console.WriteLine("Defining Events");
             client.Connected += (sender, e) => // Client is connected to Discord
             {
                 Console.WriteLine("Connected! User: " + e.User.Username);
@@ -89,8 +91,12 @@ namespace DiscordSharp_Starter
             try{ 
                 // Make sure that IF something goes wrong, the user will be notified.
                 // The SendLoginRequest should be called after the events are defined, to prevent issues.
+                Console.WriteLine("Sending login request");
                 client.SendLoginRequest();
-                client.Connect(); // Login request, and then connect using the discordclient i just made.
+                Console.WriteLine("Connecting client in separate thread");
+                client.Connect();
+                 // Login request, and then connect using the discordclient i just made.
+                Console.WriteLine("Client connected!");
             }catch(Exception e){
                 Console.WriteLine("Something went wrong!\n" + e.Message + "\nPress any key to close this window.");
             }
@@ -100,6 +106,7 @@ namespace DiscordSharp_Starter
 
             // Now to make sure the console doesnt close:
             Console.ReadKey(); // If the user presses a key, the bot will shut down.
+            Environment.Exit(0); // Make sure all threads are closed.
         }
 
         public int stringnumber(string name, int min, int max)
