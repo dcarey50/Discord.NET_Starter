@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DiscordSharp">
-      <HintPath>..\..\..\..\Users\Ryan de Jonge\Desktop\DS\DiscordSharp.dll</HintPath>
+    <Reference Include="DiscordSharp, Version=0.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\Ryan de Jonge\Desktop\dsold\DiscordSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
