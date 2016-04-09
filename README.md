@@ -1,6 +1,8 @@
 # DiscordSharp_Starter
 Just a little project to get you starting
 
+I recommend you using discordsharp-v0.6.0.67-dev.
+
 This project uses DiscordSharp by LuigiFan, get it [here](https://github.com/Luigifan/DiscordSharp)
 
 If you want any help, or if you just want to contact me, join my [discord server!](https://discord.gg/0oZpaYcAjfvkDuE4) :)
