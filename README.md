@@ -8,11 +8,8 @@ This project uses DiscordSharp by LuigiFan, get it [here](https://github.com/Lui
 If you want any help, or if you just want to contact me, join my [discord server!](https://discord.gg/0oZpaYcAjfvkDuE4) :)
 
 ## Functions
-
-- [x] = complete
-- [ ] = incomplete
-
-
+[x] = completed
+[ ] = not completed
 
 
 - [x] Check if a channel message has been received, and respond to that
