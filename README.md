@@ -1,6 +1,6 @@
 # DiscordSharp_Starter
 ### Introduction
-So YOU want to make a discord bot of your own? Look no further! This is exactly what you need! DiscordSharp_Starter is a starter project to get you started at making your very own Discord bot using DiscordSharp! I myself am currently using **discordsharp-v0.6.0.67-dev** for this project, but you can actually use any version you'd like! *(you might have to change some stuff due to library changes.)* 
+So YOU want to make a discord bot of your own? Look no further! This is exactly what you need! DiscordSharp_Starter is a starter project to get you started at making your very own Discord bot using DiscordSharp! I myself am currently using **the latest version of discordsharp** for this project, but you can actually use any version you'd like! *(you might have to change some stuff due to library changes.)* 
 
 ### DiscordSharp
 I hear you asking, what exactly is DiscordSharp? DiscordSharp is an AMAZING discord bot library made by LuigiFan. You can download it [here](https://github.com/Luigifan/DiscordSharp). It's fairly easy to use and a good way to get you into bot development!
