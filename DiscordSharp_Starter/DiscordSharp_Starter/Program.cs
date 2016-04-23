@@ -1,9 +1,12 @@
 ﻿//  If you have any questions or just want to talk, join my server!
 //  https://discord.gg/0oZpaYcAjfvkDuE4
 using DiscordSharp;
+using DiscordSharp.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,17 +15,20 @@ namespace DiscordSharp_Starter
 {
     class Program
     {
+        public static DiscordSharp.Objects.DiscordChannel lastchannel;
         static void Main(string[] args)
         {
             // First of all, a DiscordClient will be created, and the email and password will be defined.
             Console.WriteLine("Defining variables");
             DiscordClient client = new DiscordClient();
-            client.ClientPrivateInformation.Email = "";
-            client.ClientPrivateInformation.Password = "";
+            client.ClientPrivateInformation.Email = "email";
+            client.ClientPrivateInformation.Password = "pass";
 
             // Then, we are going to set up our events before connecting to discord, to make sure nothing goes wrong.
 
             Console.WriteLine("Defining Events");
+            // find that one you interested in 
+
             client.Connected += (sender, e) => // Client is connected to Discord
             {
                 Console.WriteLine("Connected! User: " + e.User.Username);
@@ -36,7 +42,7 @@ namespace DiscordSharp_Starter
 
             client.PrivateMessageReceived += (sender, e) => // Private message has been received
             {
-                if (e.Message == "help")
+                if (e.Message == "!help")
                 {
                     e.Author.SendMessage("This is a private message!");
                     // Because this is a private message, the bot should send a private message back
@@ -55,11 +61,45 @@ namespace DiscordSharp_Starter
 
             client.MessageReceived += (sender, e) => // Channel message has been received
             {
-                if (e.MessageText == "help")
+                if (e.MessageText == "!admin")
+                {
+                    bool isadmin = false;
+                    List<DiscordRole> roles = e.Author.Roles;
+                    foreach(DiscordRole role in roles){
+                        if (role.Name.Contains("Administrator"))
+                        {
+                            isadmin = true;
+                        }
+                    }
+                    if (isadmin)
+                    {
+                        e.Channel.SendMessage("Yes, you are! :D");
+                    }
+                    else
+                    {
+                        e.Channel.SendMessage("No, you aren't :c");
+                    }
+                }
+                if (e.MessageText == "!help")
                 {
                     e.Channel.SendMessage("This is a public message!");
                     // Because this is a public message, 
                     // the bot should send a message to the channel the message was received.
+                }
+                if (e.MessageText == "!cat")
+                {
+                    Thread t = new Thread(new ParameterizedThreadStart(randomcat));
+                    t.Start(e.Channel);
+                    string s;
+                    using (WebClient webclient = new WebClient())
+                    {
+                        s = webclient.DownloadString("http://random.cat/meow");
+                        int pFrom = s.IndexOf("\\/i\\/") + "\\/i\\/".Length;
+                        int pTo = s.LastIndexOf("\"}");
+                        string cat = s.Substring(pFrom, pTo - pFrom);
+                        webclient.DownloadFile("http://random.cat/i/" + cat, "cat.png");
+                        client.AttachFile(e.Channel, "meow!", "cat.png");
+                    }
                 }
             };
 
@@ -87,6 +127,8 @@ namespace DiscordSharp_Starter
                     e.Channel.SendMessage("<@" + e.DeletedMessage.Author.ID + "> sent: " +e.DeletedMessage.Content.ToString());
                 };
 
+            
+
             // Now, try to connect to Discord.
             try{ 
                 // Make sure that IF something goes wrong, the user will be notified.
@@ -108,6 +150,11 @@ namespace DiscordSharp_Starter
             // Now to make sure the console doesnt close:
             Console.ReadKey(); // If the user presses a key, the bot will shut down.
             Environment.Exit(0); // Make sure all threads are closed.
+        }
+
+        public static void randomcat(object channel)
+        {
+
         }
     }
 }
