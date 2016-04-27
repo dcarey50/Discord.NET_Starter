@@ -13,7 +13,10 @@ And i hear you asking, what does this starter bot do? Well, I already predicted 
 
 - [x] Check if a channel message has been received, and respond to that
 - [x] Check if a private message has been received, and respond to that
-- [x] Join a channel after receiving a "join *inviteurl*" private message
+- [x] Join a channel after receiving a "join *inviteurl*" private message (DOESN'T WORK WITH API)
 - [x] Send a message once a new channel has been created
 - [x] Welcome a user to your server (in private chat)
 - [x] Block message deleting
+- [x] Check if user has correct role
+- [x] Kinda hardcoded random.cat sender
+- [ ] Sync a channel with an IRC chat
