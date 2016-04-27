@@ -26,6 +26,5 @@ And i hear you asking, what does this starter bot do? Well, I already predicted 
 ### Joining servers
 A bot can join a server by sending `join [inviteurl]` to it.
 
-however, the API does not support that. To make a bot join using the api, use the following URL.
-
+however, the API does not support that. To make a bot join using the api, use the following URL:
 `https://discordapp.com/oauth2/authorize?&client_id=[YOUR_CLIENT_ID]&scope=bot&permissions=0`
