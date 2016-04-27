@@ -20,3 +20,12 @@ And i hear you asking, what does this starter bot do? Well, I already predicted 
 - [x] Check if user has correct role
 - [x] Kinda hardcoded random.cat sender
 - [ ] Sync a channel with an IRC chat
+- [ ] Add code on how library works with the API
+
+
+### Joining servers
+A bot can join a server by sending `join [inviteurl]` to it.
+
+however, the API does not support that. To make a bot join using the api, use the following URL.
+
+`https://discordapp.com/oauth2/authorize?&client_id=[YOUR_CLIENT_ID]&scope=bot&permissions=0`
