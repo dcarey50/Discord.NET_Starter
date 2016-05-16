@@ -32,9 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DiscordSharp, Version=0.6.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Users\Ryan de Jonge\Desktop\DS#\DiscordSharp.dll</HintPath>
+    <Reference Include="DiscordSharp">
+      <HintPath>G:\libraries\discordsharp\DiscordSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio">
+      <HintPath>G:\libraries\discordsharp\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>G:\libraries\discordsharp\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,6 +48,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="websocket-sharp">
+      <HintPath>G:\libraries\discordsharp\websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSocket4Net">
+      <HintPath>G:\libraries\discordsharp\WebSocket4Net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />

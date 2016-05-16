@@ -19,8 +19,7 @@ And i hear you asking, what does this starter bot do? Well, I already predicted 
 - [x] Block message deleting
 - [x] Check if user has correct role
 - [x] Kinda hardcoded random.cat sender
-- [ ] Sync a channel with an IRC chat
-- [ ] Add code on how library works with the API
+- [x] Add code on how library works with the API
 
 
 ### Joining servers

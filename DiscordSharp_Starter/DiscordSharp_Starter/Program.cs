@@ -16,11 +16,15 @@ namespace DiscordSharp_Starter
     class Program
     {
         public static DiscordSharp.Objects.DiscordChannel lastchannel;
+        public static bool isbot = true;
         static void Main(string[] args)
         {
             // First of all, a DiscordClient will be created, and the email and password will be defined.
             Console.WriteLine("Defining variables");
-            DiscordClient client = new DiscordClient();
+            // Fill in token and change isbot to true if you use the API
+            // Else, leave token alone and change isbot to false
+            // But believe me, the API bots are nicer because of a sexy bot tag!
+            DiscordClient client = new DiscordClient("bot token", isbot);
             client.ClientPrivateInformation.Email = "email";
             client.ClientPrivateInformation.Password = "pass";
 
@@ -35,7 +39,7 @@ namespace DiscordSharp_Starter
                 // If the bot is connected, this message will show.
                 // Changes to client, like playing game should be called when the client is connected,
                 // just to make sure nothing goes wrong.
-                client.UpdateCurrentGame("Bot online!"); // This will display at "Playing: "
+                client.UpdateCurrentGame("DS_starter!", true, "https://github.com/NaamloosDT/DiscordSharp_Starter"); // This will display at "Playing: "
                 //Whoops! i messed up here. (original: Bot online!\nPress any key to close this window.)
             };
 
@@ -48,13 +52,19 @@ namespace DiscordSharp_Starter
                     // Because this is a private message, the bot should send a private message back
                     // A private message does NOT have a channel
                 }
-                if (e.Message.StartsWith("join "))
+                if (e.Message.StartsWith("join"))
                 {
-                    string inviteID = e.Message.Substring(e.Message.LastIndexOf('/') + 1);
-                    // Thanks to LuigiFan (Developer of DiscordSharp) for this line of code!
-                    client.AcceptInvite(inviteID);
-                    e.Author.SendMessage("Joined your discord server!");
-                    Console.WriteLine("Got join request from " + inviteID);
+                    if (!isbot) {
+                        string inviteID = e.Message.Substring(e.Message.LastIndexOf('/') + 1);
+                        // Thanks to LuigiFan (Developer of DiscordSharp) for this line of code!
+                        client.AcceptInvite(inviteID);
+                        e.Author.SendMessage("Joined your discord server!");
+                        Console.WriteLine("Got join request from " + inviteID);
+                    }else
+                    {
+                        e.Author.SendMessage("Please use this url instead!" +
+                            "https://discordapp.com/oauth2/authorize?client_id=[CLIENT_ID]&scope=bot&permissions=0");
+                    }
                 }
             };
 
@@ -136,8 +146,9 @@ namespace DiscordSharp_Starter
                 Console.WriteLine("Sending login request");
                 client.SendLoginRequest();
                 Console.WriteLine("Connecting client in separate thread");
-                Thread connect = new Thread(client.Connect);
-                connect.Start();
+                // Cannot convert from 'method group' to 'ThreadStart', so i removed threading
+                // Pass argument 'true' to use .Net sockets.
+                client.Connect();
                  // Login request, and then connect using the discordclient i just made.
                 Console.WriteLine("Client connected!");
             }catch(Exception e){
