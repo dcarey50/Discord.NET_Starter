@@ -118,7 +118,10 @@ namespace DiscordSharp_Starter
             //  This sends a message to every new channel on the server
             client.ChannelCreated += (sender, e) =>
                 {
-                    e.ChannelCreated.SendMessage("Nice! a new channel has been created!");
+                    if(e.ChannelCreated.Type == ChannelType.Text)
+                    {
+                        e.ChannelCreated.SendMessage("Nice! a new channel has been created!");
+                    }
                 };
 
             //  When a user joins the server, send a message to them.
