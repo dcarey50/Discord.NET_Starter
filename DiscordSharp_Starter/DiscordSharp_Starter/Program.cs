@@ -103,7 +103,8 @@ namespace DiscordSharp_Starter
                 };
 
             client.ExecuteAndWait(async () => {
-                await client.Connect("MTQ4NDU4ODgwMzc5MjU2ODMy.CiTRUw.phwuDhGnu0gbaaJQCH72HHwg2DQ");
+                // yes i left my token here but i refreshed it lmao
+                await client.Connect("BOT TOKEN");
                 client.SetGame("D.NET_starter!", GameType.Twitch, "https://github.com/NaamloosDT/DiscordSharp_Starter");
             });
 
