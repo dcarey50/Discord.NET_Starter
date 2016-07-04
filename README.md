@@ -1,4 +1,4 @@
-# DiscordSharp_Starter
+# Discord.Net_Starter
 [DiscordSharp version](https://github.com/NaamloosDT/DiscordSharp_Starter)
 ### Introduction
 So YOU want to make a discord bot of your own? Look no further! This is exactly what you need! Discord.NET_Starter is a starter project to get you started at making your very own Discord bot using DiscordDiscord.NET! I myself am currently using the latest version of Discord.NET for this project, but you can actually use any version you'd like! *(you might have to change some stuff due to library changes.)* 
