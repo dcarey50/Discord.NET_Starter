@@ -1,16 +1,16 @@
 # DiscordSharp_Starter
-## I WILL SOON PORT THIS TO DISCORD.NET. THANKS FOR YOUR SUPPORT c:
+[DiscordSharp version](https://github.com/NaamloosDT/DiscordSharp_Starter)
 ### Introduction
-So YOU want to make a discord bot of your own? Look no further! This is exactly what you need! DiscordSharp_Starter is a starter project to get you started at making your very own Discord bot using DiscordSharp! I myself am currently using the latest version of discordsharp for this project, but you can actually use any version you'd like! *(you might have to change some stuff due to library changes.)* 
+So YOU want to make a discord bot of your own? Look no further! This is exactly what you need! Discord.NET_Starter is a starter project to get you started at making your very own Discord bot using DiscordDiscord.NET! I myself am currently using the latest version of Discord.NET for this project, but you can actually use any version you'd like! *(you might have to change some stuff due to library changes.)* 
 
-### DiscordSharp
-I hear you asking, what exactly is DiscordSharp? DiscordSharp is an AMAZING discord bot library made by LuigiFan. You can download it [here](https://github.com/Luigifan/DiscordSharp). It's fairly easy to use and a good way to get you into bot development!
+### Discord.NET
+I hear you asking, what exactly is Discord.NET? Discord.NET is an AMAZING discord bot library made by RogueException. You can download it [here](https://github.com/RogueException/Discord.Net). It's fairly easy to use and a good way to get you into bot development!
 
 ### My Discord server
-And on top of all of that, If you need any help i would love to help you out! just join me at my personal [discord server!](https://discord.gg/0oZpaYcAjfvkDuE4) and ask anything you'd like! But please, DON'T add any bots without my permission. it's kinda rude :)
+And on top of all of that, If you need any help i would love to help you out! just join me at my personal [discord server!](https://discord.gg/0oZpaYcAjfvkDuE4) and ask anything you'd like!
 
 ### Functions
-And i hear you asking, what does this starter bot do? Well, I already predicted you wouyd ask that! so i made a nice list of functions :)
+And i hear you asking, what does this starter bot do? Well, I already predicted you would ask that! so i made a nice list of functions :)
 
 - [x] Check if a channel message has been received, and respond to that
 - [x] Check if a private message has been received, and respond to that
@@ -24,7 +24,5 @@ And i hear you asking, what does this starter bot do? Well, I already predicted 
 
 
 ### Joining servers
-A bot can join a server by sending `join [inviteurl]` to it.
-
-however, the API does not support that. To make a bot join using the api, use the following URL:
+To make a bot join using the api, use the following URL:
 `https://discordapp.com/oauth2/authorize?&client_id=[YOUR_CLIENT_ID]&scope=bot&permissions=0`
