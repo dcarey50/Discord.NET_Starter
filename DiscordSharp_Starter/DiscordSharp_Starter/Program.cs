@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Discord;
+using Discord.Net;
+
 
 namespace DiscordSharp_Starter
 {
@@ -23,14 +25,14 @@ namespace DiscordSharp_Starter
             // Fill in token and change isbot to true if you use the API
             // Else, leave token alone and change isbot to false
             // But believe me, the API bots are nicer because of a sexy bot tag!
-            DiscordClient client = new DiscordClient();
+            DiscordClient _client = new DiscordClient();
 
             // Then, we are going to set up our events before connecting to discord, to make sure nothing goes wrong.
 
             Console.WriteLine("Defining Events");
             // find that one you interested in 
 
-            client.MessageReceived += (sender, e) => // Channel message has been received
+            _client.MessageReceived += (sender, e) => // Channel message has been received
             {
                 if (e.Message.Text == "!admin")
                 {
@@ -53,7 +55,7 @@ namespace DiscordSharp_Starter
                 }
                 if (e.Message.Text == "!help")
                 {
-                    e.Channel.SendMessage("This is a public message!");
+                    e.Channel.SendMessage("This is a test help message!");
                     // Because this is a public message, 
                     // the bot should send a message to the channel the message was received.
                 }
@@ -62,15 +64,42 @@ namespace DiscordSharp_Starter
                     Thread t = new Thread(new ParameterizedThreadStart(randomcat));
                     t.Start(e.Channel);
                     string s;
-                    using (WebClient webclient = new WebClient())
+                    using (WebClient web_client = new WebClient())
                     {
-                        s = webclient.DownloadString("http://random.cat/meow");
+                        s = web_client.DownloadString("http://random.cat/meow");
                         int pFrom = s.IndexOf("\\/i\\/") + "\\/i\\/".Length;
                         int pTo = s.LastIndexOf("\"}");
                         string cat = s.Substring(pFrom, pTo - pFrom);
-                        webclient.DownloadFile("http://random.cat/i/" + cat, "cat.png");
-                        e.Channel.SendMessage("Meow!");
+                        web_client.DownloadFile("http://random.cat/i/" + cat, "cat.png");
+                        e.Channel.SendMessage("Neko-chan!");
                         e.Channel.SendFile("cat.png");
+                    }
+                }
+                if (e.Message.Text.StartsWith("!repeat"))
+                {
+                    string recievedMessage = e.Message.Text;
+                    string newMessage = recievedMessage.TrimStart('!','r','e','p','e','a','t');
+                    e.Channel.SendMessage(newMessage);
+                }
+                if (e.Message.Text.StartsWith("!stats"))
+                {
+
+                }
+                if (e.Message.Text == "!die")
+                {
+                    bool isadmin = false;
+                    IEnumerable<Role> roles = e.User.Roles;
+                    foreach (Role role in roles)
+                    {
+                        if (role.Name.Contains("Administrator"))
+                        {
+                            isadmin = true;
+                        }
+
+                    }
+                    if (isadmin)
+                    {
+                        _client.Disconnect();
                     }
                 }
             };
@@ -78,7 +107,7 @@ namespace DiscordSharp_Starter
             //  Below: some things that might be nice?
 
             //  This sends a message to every new channel on the server
-            client.ChannelCreated += (sender, e) =>
+            _client.ChannelCreated += (sender, e) =>
                 {
                     if(e.Channel.Type == ChannelType.Text)
                     {
@@ -87,25 +116,25 @@ namespace DiscordSharp_Starter
                 };
 
             //  When a user joins the server, send a message to them.
-            client.UserJoined += (sender, e) =>
+            _client.UserJoined += (sender, e) =>
                 {
                     e.User.SendMessage("Welcome to my server! rules:");
                     e.User.SendMessage("1. be nice!");
-                    e.User.SendMessage("- Your name!");
+                    e.User.SendMessage("- D-Rock!");
                 };
 
             //  Don't want messages to be removed? this piece of code will
             //  Keep messages for you. Remove if unused :)
-            client.MessageDeleted += (sender, e) =>
+            _client.MessageDeleted += (sender, e) =>
                 {
                     e.Channel.SendMessage("Removing messages has been disabled on this server!");
                     e.Channel.SendMessage("<@" + e.Message.User.Id + "> sent: " +e.Message.Text);
                 };
 
-            client.ExecuteAndWait(async () => {
+            _client.ExecuteAndWait(async () => {
                 // yes i left my token here but i refreshed it lmao
-                await client.Connect("BOT TOKEN");
-                client.SetGame("D.NET_starter!", GameType.Twitch, "https://github.com/NaamloosDT/DiscordSharp_Starter");
+                await _client.Connect("MjM3NjIxODc0NzQ4NTU1MjY0.Cuezcg.oI5i9zAirrtYeTYvu1r33-GYTKk", TokenType.Bot);
+                _client.SetGame("D.NET_starter!", GameType.Twitch, "https://github.com/NaamloosDT/DiscordSharp_Starter");
             });
 
 
