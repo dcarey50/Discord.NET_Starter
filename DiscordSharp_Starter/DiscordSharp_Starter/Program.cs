@@ -10,6 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Net;
+using Newtonsoft.Json;
+using System.IO;
 
 
 namespace DiscordSharp_Starter
@@ -83,7 +85,28 @@ namespace DiscordSharp_Starter
                 }
                 if (e.Message.Text.StartsWith("!stats"))
                 {
-
+                    
+                    string recievedMessage = e.Message.Text;
+                    string newMessage = recievedMessage.TrimStart('!', 's', 't', 'a', 't', 's');
+                    if (newMessage != null)
+                    {
+                        string nameJson = new WebClient().DownloadString("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + newMessage + "?api_key=418001fc-ad75-46f3-82d1-125e8cb47e68");
+                        string statsJson;
+                        JsonTextReader reader = new JsonTextReader(new StringReader(nameJson));
+                        while (reader.Read())
+                        {
+                            if (reader.TokenType.Equals("id"))
+                            {
+                                statsJson = new WebClient().DownloadString("https://na.api.pvp.net/api/lol/na/v1.3/stats/by-summoner/" + reader.Value.ToString() + "/summary?season=SEASON2016&api_key=418001fc-ad75-46f3-82d1-125e8cb47e68");
+                                e.Channel.SendMessage(statsJson.Substring(0, 1999));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        e.Channel.SendMessage("Please enter your summoner name when using this command");
+                    }
+                    
                 }
                 if (e.Message.Text == "!die")
                 {
