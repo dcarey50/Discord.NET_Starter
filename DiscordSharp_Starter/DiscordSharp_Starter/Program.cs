@@ -55,6 +55,7 @@ namespace DiscordSharp_Starter
                         e.Channel.SendMessage("No, you aren't :c");
                     }
                 }
+                if(e.Message.)
                 if (e.Message.Text == "!help")
                 {
                     e.Channel.SendMessage("This is a test help message!");
@@ -73,29 +74,38 @@ namespace DiscordSharp_Starter
                         int pTo = s.LastIndexOf("\"}");
                         string cat = s.Substring(pFrom, pTo - pFrom);
                         web_client.DownloadFile("http://random.cat/i/" + cat, "cat.png");
-                        e.Channel.SendMessage("Neko-chan!");
+                        e.Channel.SendMessage("Cat!");
                         e.Channel.SendFile("cat.png");
                     }
                 }
                 if (e.Message.Text.StartsWith("!repeat"))
                 {
                     string recievedMessage = e.Message.Text;
-                    string newMessage = recievedMessage.TrimStart('!','r','e','p','e','a','t');
+                    string newMessage = recievedMessage.ToLower();
+                    newMessage = recievedMessage.TrimStart('!','r','e','p','e','a','t');
                     e.Channel.SendMessage(newMessage);
+                }
+
+                if (e.Message.Text.StartsWith("!purge"))
+                {
+                    string recievedMessage = e.Message.Text;
+                    string newMessage = recievedMessage.ToLower();
+                    newMessage = newMessage.TrimStart('!', 'p', 'u', 'r', 'g', 'e');
+                    e.Channel.DeleteMessages()
                 }
                 if (e.Message.Text.StartsWith("!stats"))
                 {
                     
                     string recievedMessage = e.Message.Text;
                     string newMessage = recievedMessage.TrimStart('!', 's', 't', 'a', 't', 's');
-                    if (newMessage != null)
+                    if (newMessage != "")
                     {
                         string nameJson = new WebClient().DownloadString("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + newMessage + "?api_key=418001fc-ad75-46f3-82d1-125e8cb47e68");
                         string statsJson;
                         JsonTextReader reader = new JsonTextReader(new StringReader(nameJson));
                         while (reader.Read())
                         {
-                            if (reader.TokenType.Equals("id"))
+                            if (reader.TokenType.ToString() == "id")
                             {
                                 statsJson = new WebClient().DownloadString("https://na.api.pvp.net/api/lol/na/v1.3/stats/by-summoner/" + reader.Value.ToString() + "/summary?season=SEASON2016&api_key=418001fc-ad75-46f3-82d1-125e8cb47e68");
                                 e.Channel.SendMessage(statsJson.Substring(0, 1999));
@@ -148,14 +158,13 @@ namespace DiscordSharp_Starter
 
             //  Don't want messages to be removed? this piece of code will
             //  Keep messages for you. Remove if unused :)
-            _client.MessageDeleted += (sender, e) =>
-                {
-                    e.Channel.SendMessage("Removing messages has been disabled on this server!");
-                    e.Channel.SendMessage("<@" + e.Message.User.Id + "> sent: " +e.Message.Text);
-                };
+            //_client.MessageDeleted += (sender, e) =>
+            //    {
+            //        e.Channel.SendMessage("Removing messages has been disabled on this server!");
+            //        e.Channel.SendMessage("<@" + e.Message.User.Id + "> sent: " +e.Message.Text);
+            //    };
 
             _client.ExecuteAndWait(async () => {
-                // yes i left my token here but i refreshed it lmao
                 await _client.Connect("MjM3NjIxODc0NzQ4NTU1MjY0.Cuezcg.oI5i9zAirrtYeTYvu1r33-GYTKk", TokenType.Bot);
                 _client.SetGame("D.NET_starter!", GameType.Twitch, "https://github.com/NaamloosDT/DiscordSharp_Starter");
             });
